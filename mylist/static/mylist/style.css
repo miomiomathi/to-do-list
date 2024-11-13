@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Host Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    box-sizing: border-box;
+    background: #f6f4d2;
+    /*background: linear-gradient(135deg, rgba(112,0,235,1) 46%, rgba(0,196,255,1) 100%);*/
+}
+header {
+    background-color: #d4e09b;
+    padding-left: 20px;
+    /*border-radius: 10px;*/
+    display: flex;
+    border-bottom: 1px solid #343f3e;
+}
+button{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #f19c79;
+    color: white;
+    border: unset;
+    box-shadow: 2px 2px 2px #343f3e;
+    font-size: 32px;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+}
+.list-item{
+    height: 60px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #343f3e;
+}
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: #888;
+}
