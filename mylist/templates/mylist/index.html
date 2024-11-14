@@ -23,7 +23,9 @@
 
     {%for row in all_items %}
     <div class = "list-item">
-        <input type= "checkbox" id = "item{{ row.id }}"> 
+        <input type= "checkbox" id = "item{{ row.id }}" 
+            {% if row.done %} checked {% endif %}
+            onclick="toggleDone(event)"> 
         <label for="item1"> {{ row.item_text }} </label>
         <button class="delete-button" data-item-id= "{{ row.id }}" onclick="deleteItem(event)">Delete</button>
     </div>
@@ -58,6 +60,19 @@
                 body: formData
             })
             .then(() => window.location.reload());
+        }
+
+        function toggleDone(event){
+            let token = '{{ csrf_token }}';
+            let formData = new FormData();
+
+            formData.append('csrfmiddlewaretoken', token);
+            formData.append('itemId', event.target.id.replace('item', ''));
+
+            fetch('/mylist/toggle/', {
+                method: 'POST',
+                body: formData
+            }).then(() => window.location.reload());
         }
     </script>
     

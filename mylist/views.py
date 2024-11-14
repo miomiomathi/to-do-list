@@ -9,9 +9,8 @@ def list(request):
     if request.method == 'POST':
         print('Received data:', request.POST['itemText'])
         ListItem.objects.create(item_text = request.POST['itemText'])
-    all_items = ListItem.objects.all()
+    all_items = ListItem.objects.all().order_by('done')
     return render(request, 'mylist/index.html', {'all_items': all_items})
-    # return HttpResponse("You are looking at you're to do list that is beeing build right now!")
 
 def delete_item(request):
     if request.method == 'POST':
@@ -21,4 +20,12 @@ def delete_item(request):
         item.delete()
     all_items = ListItem.objects.all()
     return render(request, 'mylist/index.html', {'all_items:': all_items})
-    #return HttpResponseRedirect(reverse('mylist'))
+
+def toggle_done(request):
+    if request.method == 'POST':
+        item_id = request.POST.get('itemId')
+        item = ListItem.objects.get(id=item_id)
+        item.done = not item.done  
+        item.save()
+    all_items = ListItem.objects.all()
+    return HttpResponseRedirect(reverse('mylist'))

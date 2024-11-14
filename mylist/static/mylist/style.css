@@ -5,12 +5,10 @@ body{
     font-optical-sizing: auto;
     box-sizing: border-box;
     background: #f6f4d2;
-    /*background: linear-gradient(135deg, rgba(112,0,235,1) 46%, rgba(0,196,255,1) 100%);*/
 }
 header {
     background-color: #d4e09b;
     padding-left: 20px;
-    /*border-radius: 10px;*/
     display: flex;
     border-bottom: 1px solid #343f3e;
 }
