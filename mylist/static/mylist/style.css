@@ -14,7 +14,7 @@ header {
     display: flex;
     border-bottom: 1px solid #343f3e;
 }
-button{
+.add-button{
     height: 60px;
     width: 60px;
     border-radius: 50%;
@@ -27,13 +27,31 @@ button{
     right: 16px;
     bottom: 16px;
 }
+
 .list-item{
     height: 60px;
     padding-left: 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #343f3e;
+    justify-content: space-between;
+    gap: 10px;
 }
+
+.delete-button {
+    height: 40px;
+    width: 100px;
+    margin-right: 10px;
+    background-color: #ff7940;
+    color: white;
+    border: 1px solid #343f3e; 
+    font-size: 16px; 
+    box-shadow: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
 input[type="checkbox"]:checked + label {
     text-decoration: line-through;
     color: #888;

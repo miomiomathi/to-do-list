@@ -17,13 +17,15 @@
             Mein Second Brain!
         </h1>
     </header>
-    <button onclick="addItem()">
+    <button class = "add-button" onclick="addItem()">
         +
     </button>
+
     {%for row in all_items %}
     <div class = "list-item">
         <input type= "checkbox" id = "item{{ row.id }}"> 
         <label for="item1"> {{ row.item_text }} </label>
+        <button class="delete-button" data-item-id= "{{ row.id }}" onclick="deleteItem(event)">Delete</button>
     </div>
     {% endfor %}
     
@@ -40,7 +42,22 @@
                 method: 'POST',
                 body: formData
             }) .then(() => window.location.reload());
-            //window.location.reload();
+        }
+
+        function deleteItem(event){
+            let token = '{{ csrf_token }}';
+            let formData = new FormData();
+
+            formData.append('csrfmiddlewaretoken', token);
+            formData.append('itemId', event.target.dataset.itemId);
+
+            console.log(formData.get('itemId'));
+
+            fetch('/mylist/delete/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(() => window.location.reload());
         }
     </script>
     
