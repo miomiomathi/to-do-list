@@ -48,16 +48,17 @@
 
         function deleteItem(event){
             let token = '{{ csrf_token }}';
-            let formData = new FormData();
+            let itemId = event.target.dataset.itemId;
 
-            formData.append('csrfmiddlewaretoken', token);
-            formData.append('itemId', event.target.dataset.itemId);
-
-            console.log(formData.get('itemId'));
+            console.log(event.target.dataset.itemId);
 
             fetch('/mylist/delete/', {
-                method: 'POST',
-                body: formData
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': token
+                },
+                body: JSON.stringify( {itemId: itemId})
             })
             .then(() => window.location.reload());
         }
