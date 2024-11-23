@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -13,9 +14,10 @@ def list(request):
     return render(request, 'mylist/index.html', {'all_items': all_items})
 
 def delete_item(request):
-    if request.method == 'POST':
-        print('deleting data', request.POST.get('itemId'))
-        item_id = request.POST.get('itemId')
+    if request.method == 'DELETE':
+        data = json.loads(request.body)
+        item_id = data.get('itemId')
+        print('deleting data', item_id)
         item = ListItem.objects.get(id = item_id)
         item.delete()
     all_items = ListItem.objects.all()
